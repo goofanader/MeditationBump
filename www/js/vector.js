@@ -16,9 +16,13 @@ Vector.prototype.scale(scale) {
 }
 
 Vector.prototype.dot(other) {
-    
+    return this.x * other.x + this.y * other.y;
 }
 
 Vector.prototype.cross(other) {
-    
+
+}
+
+Vector.prototype.equals(other) {
+    return (this.x == other.x && this.y == other.y);
 }
