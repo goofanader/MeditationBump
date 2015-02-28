@@ -48,7 +48,7 @@ Projection.prototype.update = function(monk) {
     // TODO: ELLIOT THIS NEEDS TO BE FIXED OR IM DOING IT WRONG. - Andrew
     
     if (!flyingProjection) {
-        //this.velocity = this.velocity.add(acceleration);
+        this.velocity = this.velocity.add(acceleration);
         this.position = this.position.add(this.velocity);
         
         this.bitmap.x = this.position.x - (0.15) * 512/2;

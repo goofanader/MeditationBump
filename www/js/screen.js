@@ -47,7 +47,7 @@ function stageSetup() {
 	// pos, vel, mass, radius
     monk = new Monk(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 1, 1);
     
-    projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 1, 1);
+    projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 10, 1);
     
     desiresX = new Desire(new Vector(5, 5), new Vector(1, 1), 1, 1);
     desires.push(desiresX);
