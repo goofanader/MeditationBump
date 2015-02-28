@@ -1,7 +1,8 @@
-function Actor(pos, vel, mass) {
+function Actor(pos, vel, mass, radius) {
     this.position = pos;
     this.velocity = vel;
     this.mass = mass;
+    this.radius = radius
 }
 
 Actor.prototype.move = function(newPos) {
@@ -16,31 +17,35 @@ Actor.prototype.update = function() {
     
 };
 
+Actor.protoype.collision_check = function(other) {
+    return (this.velocity.distance(other.velocity) < (this.radius + other.radius));
+};
+
 Actor.protoype.collide = function(other) {
     
     // Calculate relative velocity
-    var relative_velocity = this.vel - other.vel;
+    var relative_velocity = this.velocity - other.velocity;
     
     // Find Normal Vector
     
     // Calculate relative velocity in terms of the normal direction
-    var velAlongNormal = relative_velocity.dot(normal)
+    var velAlongNormal = relative_velocity.dot(normal);
  
     // Do not resolve if velocities are separating
     if(velAlongNormal > 0)
         return;
  
     // Calculate impulse scalar
-    var j = -1 * (1 + Constants.RESTITUTION) * velAlongNormal
-    j = j / (1 / this.mass + 1 / other.mass)
+    var j = -1 * (1 + Constants.RESTITUTION) * velAlongNormal;
+    j = j / (1 / this.mass + 1 / other.mass);
  
     // Apply impulse
-    var impulse = j * normal
-    var mass_sum = this.mass + other.mass
-    var ratio = this.mass / mass_sum
-    this.velocity -= ratio * impulse
+    var impulse = j * normal;
+    var mass_sum = this.mass + other.mass;
+    var ratio = this.mass / mass_sum;
+    this.velocity = this.velocity - ratio * impulse;
  
-    ratio = other.mass / mass_sum
-    this.velocity = this.velocity + ratio * impulse
+    ratio = other.mass / mass_sum;
+    other.velocity = other.velocity + ratio * impulse;
 };
 
