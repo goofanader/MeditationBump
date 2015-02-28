@@ -8,19 +8,11 @@ Vector.prototype.add = function(other) {
 };
 
 Vector.prototype.sub = function(other) {
-    this.x = this.x - other.x;
-    this.y = this.y - other.y;   
-    return this;
-};
-
-Vector.prototype.nonImmuteSub = function(other) {
     return new Vector(this.x - other.x,this.y - other.y);   
 };
 
 Vector.prototype.scale = function(scale) {
-    this.x = scale * this.x;
-    this.y = scale * this.y;
-    return this;
+    return new Vector(scale * this.x, scale * this.y);
 };
 
 Vector.prototype.dot = function(other) {

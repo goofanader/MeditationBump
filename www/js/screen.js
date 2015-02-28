@@ -43,7 +43,8 @@ function stageSetup() {
     img.src = "img/background/Background.png";
     
     game = new Game(stage);
-
+	
+	// pos, vel, mass, radius
     monk = new Monk(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 1, 1);
     
     projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 1, 1);
@@ -60,7 +61,10 @@ function stageSetup() {
     function tick(event) {
         // Randomly generate a desire.
         if (Math.random() < 0.05 && desires.length < 5) {
-           desires.push(new Desire(new Vector(Math.ceil(Math.random() * stage.canvas.width), Math.ceil(Math.random() * stage.canvas.height)), new Vector(Math.ceil(Math.random() * 2), Math.ceil(Math.random() * 2)), 1, 1));
+			// Random position
+			var start = new Vector(Math.ceil(Math.random() * stage.canvas.width), Math.ceil(Math.random() * stage.canvas.height));
+			// pos, vel, mass, radius
+            desires.push(new Desire(start, monk.position.sub(start).norm().scale(Math.ceil(Math.random() * 2)), 1, 1));
         }
         
         // this set makes it so the stage only re-renders when an event handler indicates a change has happened.
