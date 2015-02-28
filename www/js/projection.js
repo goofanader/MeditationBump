@@ -1,7 +1,8 @@
-var flyingProjection = false;
 
 function Projection(pos, vel, mass, radius) {
     var that = this;
+    this.flyingProjection = false;
+
 	Actor.call(this, pos, vel, mass, radius);
 
     var localBitmap;
@@ -20,12 +21,12 @@ function Projection(pos, vel, mass, radius) {
     this.bitmap.on("mousedown", function (evt) {
     this.parent.addChild(this);
     this.offset = {x: this.x - evt.stageX, y: this.y - evt.stageY};
-    flyingProjection = true;
+    that.flyingProjection = true;
 });
     this.bitmap.on("pressup", function (evt) {
     that.position.x = evt.stageX;
     that.position.y = evt.stageY;
-    flyingProjection = false;
+    that.flyingProjection = false;
 });
 
     this.bitmap.on("pressmove", function (evt) {
@@ -47,7 +48,7 @@ Projection.prototype.update = function(monk) {
     
     // TODO: ELLIOT THIS NEEDS TO BE FIXED OR IM DOING IT WRONG. - Andrew
     
-    if (!flyingProjection) {
+    if (!this.flyingProjection) {
         this.velocity = this.velocity.add(acceleration);
         this.position = this.position.add(this.velocity);
         

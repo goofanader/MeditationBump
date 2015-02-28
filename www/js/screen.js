@@ -47,7 +47,7 @@ function stageSetup() {
 	// pos, vel, mass, radius
     monk = new Monk(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 1, 50);
     
-    projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 10, 50);
+    projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 10, 10);
     
     desiresX = new Desire(new Vector(5, 5), new Vector(1, 1), 1, 1);
     desires.push(desiresX);
@@ -64,7 +64,7 @@ function stageSetup() {
 			// Random position
 			var start = new Vector(Math.ceil(Math.random() * stage.canvas.width), Math.ceil(Math.random() * stage.canvas.height));
 			// pos, vel, mass, radius
-            desires.push(new Desire(start, monk.position.sub(start).norm().scale(Math.ceil(Math.random() * 2)), 1, 50));
+            desires.push(new Desire(start, monk.position.sub(start).norm().scale(Math.ceil(Math.random() * 2)), 1, 10));
         }
         
         // this set makes it so the stage only re-renders when an event handler indicates a change has happened.
