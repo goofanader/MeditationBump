@@ -27,7 +27,7 @@ Actor.protoype.collide = function(other) {
     var relative_velocity = this.velocity - other.velocity;
     
     // Find Normal Vector
-    var normal = new Vector(this.x - other.x, this.y - other.y).normalize();
+    var normal = new Vector(this.x - other.x, this.y - other.y).norm();
     
     // Calculate relative velocity in terms of the normal direction
     var velAlongNormal = relative_velocity.dot(normal);
