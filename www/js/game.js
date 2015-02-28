@@ -11,4 +11,4 @@ Game.prototype.update = function() {
     gameScreen.update();
 };
 
-Game game = new Game(stage);
+var game = new Game(stage);
