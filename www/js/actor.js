@@ -1,5 +1,4 @@
 
-
 function Actor(pos, vel, mass, radius) {
     this.position = pos;
     this.velocity = vel;

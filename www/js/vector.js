@@ -13,6 +13,10 @@ Vector.prototype.sub = function(other) {
     this.y = this.y - other.y;   
 };
 
+Vector.prototype.nonImmuteSub = function(other) {
+    return new Vector(this.x - other.x,this.y - other.y);   
+};
+
 Vector.prototype.scale = function(scale) {
     this.x = scale * this.x;
     this.y = scale * this.y;
