@@ -8,7 +8,5 @@ Game.prototype.addActor = function(actor) {
 };
 
 Game.prototype.update = function() {
-    gameScreen.update();
+    this.gameScreen.update();
 };
-
-var game = new Game(stage);

@@ -34,7 +34,7 @@ Vector.prototype.equals = function(other) {
     return (this.x == other.x && this.y == other.y);
 };
 
-Vector.prototype.norm = function(other) {
+Vector.prototype.norm = function() {
     return new Vector(this.x / this.magnitude(), this.y / this.magnitude());
 };
 
