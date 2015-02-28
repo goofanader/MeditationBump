@@ -9,8 +9,8 @@ Vector.prototype.add = function(other) {
 }
 
 Vector.prototype.sub = function(other) {
-    this.x = this.x + other.x;
-    this.y = this.y + other.y;   
+    this.x = this.x - other.x;
+    this.y = this.y - other.y;   
 }
 
 Vector.prototype.scale = function(scale) {
@@ -30,4 +30,8 @@ Vector.prototype.cross = function(other) {
 
 Vector.prototype.equals = function(other) {
     return (this.x == other.x && this.y == other.y);
+}
+
+Vector.prototype.norm = function() {
+    
 }

@@ -67,15 +67,21 @@
         }
         document.addEventListener("deviceready", onDeviceReady, false) ;    // ignored by "Standard HTML5 web app"
     </script>
+    
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="https://code.createjs.com/easeljs-0.8.0.min.js"></script>
+    <script src="https://code.createjs.com/tweenjs-0.6.0.min.js"></script>
+    <script src="https://code.createjs.com/preloadjs-0.6.0.min.js"></script>
+    
+    <script src="js/screen.js"></script>
 
 <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
 <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
     <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
 </head>
-<body>
-    <script src="js/vector.js"></script>
-    <canvas id="gameScreen" style="border:1px solid #000000;">
-    <script src="js/screen.js"></script>
+<body onload="stageSetup()">
+    <canvas id="gameScreen">
 </canvas>
+        <script src="js/game.js"></script>
 </body>
 </html>
