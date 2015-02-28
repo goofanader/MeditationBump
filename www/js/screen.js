@@ -47,11 +47,7 @@ function stageSetup() {
 	// pos, vel, mass, radius
     monk = new Monk(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 1, 10);
     
-    projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 10, 5);
-    
-    desiresX = new Desire(new Vector(5, 5), new Vector(1, 1), 1, 1);
-    desires.push(desiresX);
-    desires.push(new Desire(new Vector(500, 3), new Vector(0, 1), 1, 1));
+    projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 10, 1);
 
     stage.update();
 
@@ -62,9 +58,9 @@ function stageSetup() {
         // Randomly generate a desire.
         if (Math.random() < 0.05 && desires.length < 5) {
 			// Random position
-			var start = new Vector(Math.ceil(Math.random() * stage.canvas.width), Math.ceil(Math.random() * stage.canvas.height));
+			var start = new Vector(Math.ceil(Math.random() * stage.canvas.width), 0);
 			// pos, vel, mass, radius
-            desires.push(new Desire(start, monk.position.sub(start).norm().scale(Math.ceil(Math.random() * 2)), 1, 5));
+            desires.push(new Desire(start, monk.position.sub(start).norm().scale(Math.ceil(Math.random() * 2)), 0.1, 0.01));
         }
         
         // this set makes it so the stage only re-renders when an event handler indicates a change has happened.
@@ -72,6 +68,10 @@ function stageSetup() {
             update = false; // only update once
             stage.update(event);
         }
+        
+                
+        // Update projection
+        projection.update(monk);
         
         // Update desires
         for (var i = 0; i < desires.length; i++) {
@@ -82,18 +82,19 @@ function stageSetup() {
            }
 		   
 		   // Game over if collided with Monk.
-		   if( monk.position.distance(desires[i].position) <= (monk.radius + desires[i].radius) ) {
+		   else if( monk.position.distance(desires[i].position) <= (monk.radius + desires[i].radius) ) {
+               stage.removeChild(desires[i].bitmap);
+               desires.splice(i--, 1)
 			   //GAME OVER
-		   }
-		   
+		   }		   
 		   // Collide astral projection with desires
-		   if( projection.position.distance(desires[i].position) <= (projection.radius + desires[i].radius) ) {
-			   projection.collide(desires[i]);
+		   else if(desires[i].collision_check(projection)) {
+			   desires[i].collide(projection);
+               //console.log(i);
+               //console.log(desires[i]);
+               //desires[i].velocity = desires[i].velocity.scale(-1);
 		   }
 		   
         }
-        
-        // Update projection
-        projection.update(monk);
     }
 }
