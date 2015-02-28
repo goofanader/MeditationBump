@@ -73,28 +73,8 @@
     <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
 </head>
 <body>
-    <canvas id="gameScreen">
-    <script>
-        var canvas;
-        var canvasWidth;
-        var ctx;
-
-        function init() {
-        canvas = document.getElementById('canvas');
-        if (canvas.getContext) {
-          ctx = canvas.getContext("2d");
-
-          window.addEventListener('resize', resizeCanvas, false);
-          window.addEventListener('orientationchange', resizeCanvas, false);
-          resizeCanvas();
-        }
-        }
-
-        function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        }  
-    </script>
+    <canvas id="gameScreen" style="border:1px solid #000000;">
+    <script src="js/screen.js"></script>
 </canvas>
 </body>
 </html>
