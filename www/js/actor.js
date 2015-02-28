@@ -1,3 +1,5 @@
+
+
 function Actor(pos, vel, mass, radius) {
     this.position = pos;
     this.velocity = vel;
@@ -10,18 +12,18 @@ Actor.prototype.move = function(newPos) {
 };
 
 Actor.prototype.step = function(x, y) {
-    this.position.add(x, y);
+    this.position.add(new Vector(x, y));
 };
 
 Actor.prototype.update = function() {
     
 };
 
-Actor.protoype.collision_check = function(other) {
+Actor.prototype.collision_check = function(other) {
     return (this.velocity.distance(other.velocity) < (this.radius + other.radius));
 };
 
-Actor.protoype.collide = function(other) {
+Actor.prototype.collide = function(other) {
     
     // Calculate relative velocity
     var relative_velocity = this.velocity - other.velocity;
