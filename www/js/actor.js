@@ -1,9 +1,12 @@
-
+/*
+    Main class for all objects in game world.
+    All objects in world must inherit the Actor class.
+*/
 function Actor(pos, vel, mass, radius) {
-    this.position = pos;
-    this.velocity = vel;
-    this.mass = mass;
-    this.radius = radius;
+    this.position = pos; // Position of Actor
+    this.velocity = vel; // Velocity of Actor
+    this.mass = mass;    // Mass of Actor
+    this.radius = radius; // Collision radious of Actor
 }
 
 Actor.prototype.move = function(newPos) {
@@ -15,8 +18,7 @@ Actor.prototype.step = function(x, y) {
 };
 
 Actor.prototype.update = function() {
-    console.log(this);
-    this.position.add(this.velocity);
+    console.log('NOT IMPLEMENTED');
 };
 
 Actor.prototype.collision_check = function(other) {
@@ -39,7 +41,7 @@ Actor.prototype.collide = function(other) {
         return;
  
     // Calculate impulse scalar
-    var j = -1 * (1 + Constants.RESTITUTION) * velAlongNormal;
+    var j = -1 * (1 + MEDITATION_BUMP_CONSTANTS.RESTITUTION) * velAlongNormal;
     j = j / (1 / this.mass + 1 / other.mass);
  
     // Apply impulse

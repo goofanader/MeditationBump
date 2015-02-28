@@ -44,6 +44,9 @@ Projection.prototype.update = function(monk) {
 	// Updating acceleration every tick based on spring & damper physics
 	var positionFromCenter = this.position.nonImmuteSub(monk.position);
 	var acceleration = positionFromCenter.scale(-MEDITATION_BUMP_CONSTANTS.SPRING_CONSTANT).nonImmuteSub(this.velocity.scale(MEDITATION_BUMP_CONSTANTS.DAMPING)).scale(1/this.mass);
+    
+    // TODO: ELLIOT THIS NEEDS TO BE FIXED OR IM DOING IT WRONG. - Andrew
+    
     if (!flyingProjection) {
         //this.velocity = this.velocity.add(acceleration);
         this.position = this.position.add(this.velocity);
