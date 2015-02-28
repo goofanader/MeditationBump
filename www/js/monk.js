@@ -12,19 +12,6 @@ function Monk(pos, vel, mass, radius) {
         stage.addChild(localBitmap);
         stage.update();
     };
-    
-    // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
-    this.bitmap.on("mousedown", function (evt) {
-    this.parent.addChild(this);
-    this.offset = {x: this.x - evt.stageX, y: this.y - evt.stageY};
-});
-
-    this.bitmap.on("pressmove", function (evt) {
-       this.x = evt.stageX + this.offset.x;
-       this.y = evt.stageY + this.offset.y;
-       // indicate that the stage should be updated on the next tick:
-       update = true;
-    });
 }
 
 Monk.prototype = Object.create(Actor.prototype);

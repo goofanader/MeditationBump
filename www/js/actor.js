@@ -15,7 +15,8 @@ Actor.prototype.step = function(x, y) {
 };
 
 Actor.prototype.update = function() {
-    
+    console.log(this);
+    this.position.add(this.velocity);
 };
 
 Actor.prototype.collision_check = function(other) {
