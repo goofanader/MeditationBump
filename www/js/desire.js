@@ -7,7 +7,7 @@ function Desire(pos, vel, mass, radius, source) {
         this.bitmap = new createjs.Bitmap("img/desires/" + source);
     }
     else {
-        var randomNumber = Math.ceil(Math.random() * 6);
+        var randomNumber = Math.ceil(Math.random() * 9);
         if (randomNumber == 1) {
             this.bitmap = new createjs.Bitmap("img/desires/Apple_Desire.png");
         }
@@ -25,6 +25,15 @@ function Desire(pos, vel, mass, radius, source) {
         }
         else if (randomNumber == 6) {
             this.bitmap = new createjs.Bitmap("img/desires/Phone_Desire.png");
+        }
+        else if (randomNumber == 7) {
+            this.bitmap = new createjs.Bitmap("img/desires/Dog_Desire.png");
+        }
+        else if (randomNumber == 8) {
+            this.bitmap = new createjs.Bitmap("img/desires/Heart_Desire.png");
+        }
+        else if (randomNumber == 9) {
+            this.bitmap = new createjs.Bitmap("img/desires/Peace_Desire.png");
         }
     }
     localBitmap = this.bitmap;

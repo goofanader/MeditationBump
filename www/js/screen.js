@@ -172,7 +172,7 @@ function stageSetup() {
                 }
             }
                 // pos, vel, mass, radius
-            desires.push(new Desire(start, monk.position.sub(start).norm().scale(Math.random() * 1.5), 1, 10));
+            desires.push(new Desire(start, monk.position.sub(start).norm().scale(0.2 + Math.random() * 1.5), 1, 10));
         }
         
         // this set makes it so the stage only re-renders when an event handler indicates a change has happened.
