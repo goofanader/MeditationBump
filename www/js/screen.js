@@ -5,6 +5,7 @@ var gameRunning = false;
 var startDesire;
 var score = 0;
 var scoreText; 
+var instructionText;
 
 function stageSetup() {
     // get a reference to the canvas we'll be working with:
@@ -123,17 +124,23 @@ function stageSetup() {
     
     projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 8, 50);
 
-    startDesire = new Desire(new Vector(stage.canvas.width/2, stage.canvas.height/5), new Vector(0, 0), 10, 10);
+    startDesire = new Desire(new Vector(stage.canvas.width/2, stage.canvas.height/4), new Vector(0, 0), 10, 10, "Start.png");
     
     scoreText = new createjs.Text("--- Desires Avoided", "bold 18px Arial", "#000");
-    scoreText.y = stage.canvas.height - stage.canvas.height/10;
+    scoreText.x = 10;
+    scoreText.y = stage.canvas.height - 30;
+    
+    instructionText = new createjs.Text("Drag monk and launch to start", "bold 14px Arial", "#000");
+    instructionText.textAlign = "center";
+    instructionText.x = stage.canvas.width/2;
+    instructionText.y = stage.canvas.height -stage.canvas.height/3;
     
     stage.addChild(scoreText);
-    
+    stage.addChild(instructionText);
     stage.update();
 
     createjs.Ticker.addEventListener("tick", tick);
-    createjs.Ticker.setFPS(30);
+    createjs.Ticker.setFPS(60);
 
     function tick(event) {
         // Randomly generate a desire.
@@ -141,13 +148,31 @@ function stageSetup() {
             if (startDesire.collision_check(projection)) {
                 gameRunning = true;
                 stage.removeChild(startDesire.bitmap);
+                stage.removeChild(instructionText);
+                score = 0;
             }
         }
-        else if (Math.random() < 0.05 && desires.length < 10) {
+        else if (Math.random() < 0.05 && desires.length < 4) {
 			// Random position
-			var start = new Vector(Math.ceil(Math.random() * stage.canvas.width), 0);
-			// pos, vel, mass, radius
-            desires.push(new Desire(start, monk.position.sub(start).norm().scale(Math.ceil(Math.random() * 2)), 1, 10));
+            var start;
+            if (Math.random() < 0.5) {
+                if (Math.random() < 0.5) {
+			         start = new Vector(Math.ceil(Math.random() * stage.canvas.width), 0);
+                }
+                else {
+                    start = new Vector(Math.ceil(Math.random() * stage.canvas.width), stage.canvas.height);
+                }
+            }
+            else {
+                if (Math.random() < 0.5) {
+			         start = new Vector(0, Math.ceil(Math.random() * stage.canvas.height/4));
+                }
+                else {
+                    start = new Vector(stage.canvas.width, Math.ceil(Math.random() * stage.canvas.height/4));
+                }
+            }
+                // pos, vel, mass, radius
+            desires.push(new Desire(start, monk.position.sub(start).norm().scale(Math.random() * 1.5), 1, 10));
         }
         
         // this set makes it so the stage only re-renders when an event handler indicates a change has happened.
@@ -165,19 +190,23 @@ function stageSetup() {
             
             // Remove desire if its off screen.
            if(false == desires[i].update(monk)) {
+               stage.removeChild(desires[i].bitmap);
                desires.splice(i--, 1);
+               score++;
            }
 		   
 		   // Game over if collided with Monk.
 		   else if(monk.collision_check(desires[i])) {
+               //GAME OVER
                for (var j = 0; j < desires.length; j++) {
                   stage.removeChild(desires[j].bitmap);
                }
                desires = [];
                gameRunning = false;
-               startDesire = new Desire(new Vector(stage.canvas.width/2, stage.canvas.height/5), new Vector(0, 0), 10, 10);
+               startDesire = new Desire(new Vector(stage.canvas.width/2, stage.canvas.height/4), new Vector(0, 0), 10, 10, "Game_Over.png");
+               instructionText.text = "Hit the game over bubble to continue meditating."
+               stage.addChild(instructionText);
                break;
-			   //GAME OVER
 		   }		   
 		   // Collide astral projection with desires
 		   else if(!projection.flyingProjection && desires[i].collision_check(projection)) {
@@ -187,7 +216,6 @@ function stageSetup() {
         }
         
         scoreText.text = score + " Desires Avoided";
-
         
         stage.update(event);
     }
