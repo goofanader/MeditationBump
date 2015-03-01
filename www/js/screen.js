@@ -45,6 +45,75 @@ function stageSetup() {
     // set image source
     img.src = "img/background/Background.png";
     
+    // setup sound
+    var preload = new createjs.LoadQueue(true);
+    preload.installPlugin(createjs.Sound);  
+    createjs.Sound.initializeDefaultPlugins();
+    
+    var gameMusic;
+    
+    preload.on("fileload", handleFileLoad);
+    preload.on("progress", handleFileProgress);
+    preload.on("complete", loadComplete);
+    preload.on("error", loadError);
+    
+    //preload.loadManifest([{id: "sound/Song.wav", src: "sound/Song.wav"}]);
+ 
+    function handleFileLoad(event) {
+        console.log("A file has loaded of type: " + event.item.type);
+        /*if(event.item.id == "logo"){
+            console.log("Logo is loaded");
+            //create bitmap here
+        }*/
+        /*if (event.item.type == "sound") {
+            gameMusic = 
+        }*/
+    }
+
+
+    function loadError(evt) {
+        console.log("Error!",evt.text);
+    }
+
+
+    function handleFileProgress(event) {
+        //progressText.text = (preload.progress*100|0) + " % Loaded";
+        //stage.update();
+    }
+
+    function loadComplete(event) {
+        console.log("Finished Loading Assets");
+    }
+    
+    createjs.Sound.initializeDefaultPlugins();
+    createjs.Sound.registerPlugins([createjs.HTMLAudioPlugin, createjs.WebAudioPlugin, createjs.FlashAudioPlugin]);
+    createjs.Sound.alternateExtensions = ["mp3"];
+    //var myInstance = createjs.Sound.play("sound/Song.wav");
+    //createjs.Sound.play("sound/Song.wav");
+    //createjs.Sound.on("fileload", createjs.proxy(this.loadHandler, (this)));
+    createjs.Sound.addEventListener("fileload", handleFileLoad);
+    //createjs.Sound.addEventListener("complete", handleSongComplete);
+    
+    function handleFileLoad(event) {
+        console.log("loading music...");
+         // This is fired for each sound that is registered.
+         var instance = createjs.Sound.play("gameMusic", {loop:-1});  // play using id.  Could also use full source path or event.src.
+         instance.on("complete", createjs.proxy(this.handleComplete, this));
+         instance.volume = 0.5;
+        console.log("Preloaded:", event.id, event.src);
+    }
+    
+    /*function handleSongComplete(event) {
+        console.log("song is complete");
+        var instance = createjs.Sound.play("gameMusic");
+        instance.on("complete", createjs.proxy(this.handleComplete, this));
+         
+        instance.volume = 0.5;
+        console.log("Replaying gameMusic");
+    }*/
+    
+    createjs.Sound.registerSound("sound/Song.mp3","gameMusic");
+    
     game = new Game(stage);
 	
 	// pos, vel, mass, radius
