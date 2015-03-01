@@ -20,7 +20,7 @@ Vector.prototype.dot = function(other) {
 };
 
 Vector.prototype.cross = function(other) {
-    return Math.pow(this.magnitude(), 2) * Math.pow(other.magniude(), 2) - Math.pow(this.dot(other), 2);
+    return Math.pow(this.magnitude(), 2) * Math.pow(other.magnitude(), 2) - Math.pow(this.dot(other), 2);
 };
 
 Vector.prototype.equals = function(other) {
@@ -32,9 +32,9 @@ Vector.prototype.norm = function() {
 };
 
 Vector.prototype.magnitude = function() {
-    return Math.sqrt(Math.pow(this.x, 2), Math.pow(this.y, 2));
+    return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
 };
 
 Vector.prototype.distance = function(other) {
-    return Math.sqrt(Math.pow(this.x - other.x, 2), Math.pow(this.y - other.y, 2));
+    return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));
 };

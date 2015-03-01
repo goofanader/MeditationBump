@@ -47,7 +47,7 @@ function stageSetup() {
 	// pos, vel, mass, radius
     monk = new Monk(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 1, 10);
     
-    projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 10, 1);
+    projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 100, 50);
 
     stage.update();
 
@@ -60,7 +60,7 @@ function stageSetup() {
 			// Random position
 			var start = new Vector(Math.ceil(Math.random() * stage.canvas.width), 0);
 			// pos, vel, mass, radius
-            desires.push(new Desire(start, monk.position.sub(start).norm().scale(Math.ceil(Math.random() * 2)), 0.1, 0.01));
+            desires.push(new Desire(start, monk.position.sub(start).norm().scale(Math.ceil(Math.random() * 2)), 10, 10));
         }
         
         // this set makes it so the stage only re-renders when an event handler indicates a change has happened.
@@ -82,7 +82,7 @@ function stageSetup() {
            }
 		   
 		   // Game over if collided with Monk.
-		   else if( monk.position.distance(desires[i].position) <= (monk.radius + desires[i].radius) ) {
+		   else if( monk.collision_check(desires[i])) {
                stage.removeChild(desires[i].bitmap);
                desires.splice(i--, 1)
 			   //GAME OVER

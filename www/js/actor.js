@@ -22,7 +22,7 @@ Actor.prototype.update = function() {
 };
 
 Actor.prototype.collision_check = function(other) {
-    return (this.velocity.distance(other.velocity) < (this.radius + other.radius));
+    return (this.position.distance(other.position) < (this.radius + other.radius));
 };
 
 Actor.prototype.collide = function(other) {

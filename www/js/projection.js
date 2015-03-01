@@ -35,7 +35,7 @@ function Projection(pos, vel, mass, radius) {
        this.x = evt.stageX + this.offset.x;
        this.y = evt.stageY + this.offset.y;
         
-        that.position = new Vector(this.x, this.y);
+       that.position = new Vector(this.x, this.y);
        // indicate that the stage should be updated on the next tick:
        update = true;
        that.flyingProjection = true;
