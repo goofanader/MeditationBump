@@ -59,7 +59,7 @@ Projection.prototype.update = function(monk) {
 	var positionFromCenter = this.position.sub(monk.position);
 	var acceleration = positionFromCenter.scale(-MEDITATION_BUMP_CONSTANTS.SPRING_CONSTANT).sub(this.velocity.scale(MEDITATION_BUMP_CONSTANTS.DAMPING)).scale(1/this.mass);
 
-    if (this.collision_check(monk) || this.velocity.equals(new Vector(0, 0))) {
+    if (this.velocity.equals(new Vector(0, 0))) {
        this.flyingProjection = false;   
     }
 

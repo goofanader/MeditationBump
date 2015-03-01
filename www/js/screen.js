@@ -3,6 +3,8 @@
 var desires = []; // List of desires on screen.
 var gameRunning = false;
 var startDesire;
+var score = 0;
+var scoreText; 
 
 function stageSetup() {
     // get a reference to the canvas we'll be working with:
@@ -112,7 +114,7 @@ function stageSetup() {
         console.log("Replaying gameMusic");
     }*/
     
-    createjs.Sound.registerSound("sound/Song.mp3","gameMusic");
+    createjs.Sound.registerSound("sound/Song.wav","gameMusic");
     
     game = new Game(stage);
 	
@@ -122,6 +124,11 @@ function stageSetup() {
     projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 8, 50);
 
     startDesire = new Desire(new Vector(stage.canvas.width/2, stage.canvas.height/5), new Vector(0, 0), 10, 10);
+    
+    scoreText = new createjs.Text("--- Desires Avoided", "bold 18px Arial", "#000");
+    scoreText.y = stage.canvas.height - stage.canvas.height/10;
+    
+    stage.addChild(scoreText);
     
     stage.update();
 
@@ -178,6 +185,9 @@ function stageSetup() {
 		   }
 		   
         }
+        
+        scoreText.text = score + " Desires Avoided";
+
         
         stage.update(event);
     }
