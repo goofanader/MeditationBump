@@ -1,5 +1,8 @@
-var desires = []; // List of desires on screen.
 
+
+var desires = []; // List of desires on screen.
+var gameRunning = false;
+var startDesire;
 
 function stageSetup() {
     // get a reference to the canvas we'll be working with:
@@ -45,10 +48,12 @@ function stageSetup() {
     game = new Game(stage);
 	
 	// pos, vel, mass, radius
-    monk = new Monk(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 1, 10);
+    monk = new Monk(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 8, 50);
     
-    projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 100, 50);
+    projection = new Projection(new Vector(stage.canvas.width/2, stage.canvas.height/2), new Vector(0, 0), 8, 50);
 
+    startDesire = new Desire(new Vector(stage.canvas.width/2, stage.canvas.height/5), new Vector(0, 0), 10, 10);
+    
     stage.update();
 
     createjs.Ticker.addEventListener("tick", tick);
@@ -56,18 +61,24 @@ function stageSetup() {
 
     function tick(event) {
         // Randomly generate a desire.
-        if (Math.random() < 0.05 && desires.length < 5) {
+        if (!gameRunning) {
+            if (startDesire.collision_check(projection)) {
+                gameRunning = true;
+                stage.removeChild(startDesire.bitmap);
+            }
+        }
+        else if (Math.random() < 0.05 && desires.length < 10) {
 			// Random position
 			var start = new Vector(Math.ceil(Math.random() * stage.canvas.width), 0);
 			// pos, vel, mass, radius
-            desires.push(new Desire(start, monk.position.sub(start).norm().scale(Math.ceil(Math.random() * 2)), 10, 10));
+            desires.push(new Desire(start, monk.position.sub(start).norm().scale(Math.ceil(Math.random() * 2)), 1, 10));
         }
         
         // this set makes it so the stage only re-renders when an event handler indicates a change has happened.
-        if (update) {
+        /*if (update) {
             update = false; // only update once
             stage.update(event);
-        }
+        }*/
         
                 
         // Update projection
@@ -82,19 +93,23 @@ function stageSetup() {
            }
 		   
 		   // Game over if collided with Monk.
-		   else if( monk.collision_check(desires[i])) {
-               stage.removeChild(desires[i].bitmap);
-               desires.splice(i--, 1)
+		   else if(monk.collision_check(desires[i])) {
+               for (var j = 0; j < desires.length; j++) {
+                  stage.removeChild(desires[j].bitmap);
+               }
+               desires = [];
+               gameRunning = false;
+               startDesire = new Desire(new Vector(stage.canvas.width/2, stage.canvas.height/5), new Vector(0, 0), 10, 10);
+               break;
 			   //GAME OVER
 		   }		   
 		   // Collide astral projection with desires
-		   else if(desires[i].collision_check(projection)) {
+		   else if(!projection.flyingProjection && desires[i].collision_check(projection)) {
 			   desires[i].collide(projection);
-               //console.log(i);
-               //console.log(desires[i]);
-               //desires[i].velocity = desires[i].velocity.scale(-1);
 		   }
 		   
         }
+        
+        stage.update(event);
     }
 }

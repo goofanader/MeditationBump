@@ -47,11 +47,11 @@ Actor.prototype.collide = function(other) {
 		// Apply impulse
 		var impulse = normal.scale(j);
 		var mass_sum = this.mass + other.mass;
-		var ratio = this.mass / mass_sum;
+		var ratio = other.mass / mass_sum;
 		this.velocity = this.velocity.add(impulse.scale(ratio));
 	 
-		ratio = other.mass / mass_sum;
-		other.velocity = other.velocity.add(impulse.scale(ratio));
+		ratio = this.mass / mass_sum;
+		other.velocity = other.velocity.sub(impulse.scale(ratio));
 	}
 };
 
