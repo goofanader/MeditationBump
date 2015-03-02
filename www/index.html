@@ -1,103 +1,45 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<!--
-  * Copyright © 2012-2015, Intel Corporation. All rights reserved.
-  * Please see the included LICENSE.md file for license terms and conditions.
-  -->
 <head>
-    <title>Blank Standard HTML5 Web App Template</title>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-
-<!-- This is a blank template, include any desired javascript frameworks, libraries, CSS here and start developing your app  -->
-
-<!--
-  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
-  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
-  * For a quick overview of "meta viewport" and @viewport, see this article:
-  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
-  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
-  * Additional useful references include:
-  *   http://www.quirksmode.org/mobile/viewports.html
-  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
-  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
--->
-
-    <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
-
-    <style>
-    /* following three (cascaded) are equivalent to above three meta viewport statements */
-    /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
-    /* see http://dev.w3.org/csswg/css-device-adapt/ */
-        @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
-        @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
-        /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
-    </style>
-
-<!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
-<!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
-    <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
-
-<!--
-  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
-  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
-  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
-  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
--->
-    <script src="cordova.js" id="xdkJScordova_"></script>
-
-<!-- Recommended location for your JavaScript libraries -->
-<!-- These library references (below) are just examples to give you the general idea... -->
-    <!-- <script src="lib/mc/hammer.js"></script> -->
-    <!-- <script src="lib/ft/fastclick.js"></script> -->
-    <!-- <script src="lib/jq/jquery.js"></script> -->
-    <!-- <script src="js/my-app.js"></script> -->
-
-<!--
-  * The following script is only needed if you convert a "Standard HTML5" project into a "Cordova" project.
-  * It provides an example of the "deviceready" event that you must wait for before you use any Cordova APIs.
-  * This script can be safely ignored by a Standard HTML5 web app, it will be ignored in non-Cordova environments.
--->
-    <script id="xdkJSonDeviceReady_">
-        function onDeviceReady() {                                          // ignored by "Standard HTML5 web app"
-            if( navigator.splashscreen && navigator.splashscreen.hide ) {   // Cordova hide splashscreen detected, use it
-                navigator.splashscreen.hide() ;
-            }
-        }
-        document.addEventListener("deviceready", onDeviceReady, false) ;    // ignored by "Standard HTML5 web app"
-    </script>
-    
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script src="https://code.createjs.com/easeljs-0.8.0.min.js"></script>
-    <script src="https://code.createjs.com/tweenjs-0.6.0.min.js"></script>
-    <script src="https://code.createjs.com/preloadjs-0.6.0.min.js"></script>
-    <script src="https://code.createjs.com/soundjs-0.6.0.min.js"></script>
-    
-    <script src="js/constants.js"></script>
-    <script src="js/screen.js"></script>
-    <script src="js/vector.js"></script>
-
-<!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
-<!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
-    <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+    <title>Meditation Bump</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1, IE=9">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Phaser App">
+    <meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- non-retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" sizes="57x57" href="icons/app_icon_57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons/app_icon_60x60.png">
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/app_icon_72x72.png">
+    <!-- non-retina iPad iOS 7 -->
+    <link rel="apple-touch-icon" sizes="76x76" href="icons/app_icon_76x76.png">
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" sizes="114x114" href="icons/app_icon_114x114.png">
+    <!-- retina iPhone iOS 7 -->
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/app_icon_120x120.png">
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/app_icon_144x144.png">
+    <!-- retina iPad iOS 7 -->
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/app_icon_152x152.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="icons/app_icon_256x256.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/app_icon_512x512.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="icons/app_icon_1024x1024.png">
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css" charset="utf-8" />
+    <!-- Load Phaser engine -->
+    <script src="lib/phaser/phaser.min.js"></script>
+    <!-- Load game source files -->
+    <script src="src/Game.js"></script>
+    <!-- Load game entrance -->
+    <script src="src/app.js"></script>
 </head>
-    <script type='text/javascript'>
-        var stage;
-        var canvas;
-        var update;
-        var background;
-        var monk;
-        var game;
-        var projection;
-    </script>
-    <script src="js/actor.js"></script> 
-    <script src="js/desire.js"></script>
-    <script src="js/monk.js"></script>
-    <script src="js/projection.js"></script>
-    <script src="js/game.js"></script>
-<body onload="stageSetup()">
-    <canvas id="gameScreen">
-</canvas>
+<body>
+    <!-- Main canvas for rendering game stage -->
+    <div id="game"></div>
 </body>
 </html>
