@@ -9,7 +9,8 @@ function Projection() {
     this.isControlledByPlayer = false;
     this.originalSize = new Vector(this.sprite.width, this.sprite.height);
     
-    this.radius = this.sprite.width / 2;
+    this.radius = this.sprite.width / 2 - 11;
+    this.isCenter = false;//true;
     // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
     /*this.bitmap.on("mousedown", function (evt) {
     this.parent.addChild(this);
@@ -55,7 +56,7 @@ Projection.prototype.update = function (monk) {
     var acceleration = positionFromCenter.scale(-MEDITATION_BUMP_CONSTANTS.SPRING_CONSTANT).sub(this.velocity.scale(MEDITATION_BUMP_CONSTANTS.DAMPING)).scale(1 / this.mass);
     
     // do some nice things to the projection. Making it kinda juicy? I guess?
-    this.sprite.alpha = game.math.clamp(Math.abs(this.position.distance(monk.position) / 100) - .1, 0, 1);
+    this.sprite.alpha = 1;//game.math.clamp(Math.abs(this.position.distance(monk.position) / 100) - .1, 0, 1);
     this.sprite.width = this.originalSize.x + this.sprite.alpha * 10;
     this.sprite.height = this.originalSize.y + this.sprite.alpha * 10;
 
@@ -63,9 +64,11 @@ Projection.prototype.update = function (monk) {
     if (this.velocity.equals(new Vector(0, 0)) && !this.isControlledByPlayer) {
         this.flyingProjection = true;
         //this.sprite.alpha = 255;
+        //this.isCenter = true;
     }
 
-    if (this.flyingProjection) {
+    if (this.flyingProjection && !this.isCenter) {
+        //this.isCenter = false;
         this.velocity = this.velocity.add(acceleration);
         this.position = this.position.add(this.velocity);
         /*this.bitmap.x = this.position.x - (0.15) * 512/2;

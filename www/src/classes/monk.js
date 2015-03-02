@@ -10,8 +10,8 @@ function Monk() {
         animationFrames[i] = i;
     }
     this.sprite.animations.add('floating', animationFrames, 24, true);
-    
-    this.radius = this.sprite.width / 2;
+    var offset = 10;
+    this.radius = this.sprite.width / 2 - offset;
 }
 
 Monk.prototype = Object.create(Actor.prototype);
