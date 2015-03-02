@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <title>Meditation Bump</title>
     <meta charset="utf-8">
@@ -31,15 +32,32 @@
     <link rel="apple-touch-icon" sizes="512x512" href="icons/app_icon_512x512.png">
     <link rel="apple-touch-icon" sizes="1024x1024" href="icons/app_icon_1024x1024.png">
     <link rel="stylesheet" href="css/stylesheet.css" type="text/css" charset="utf-8" />
+    
     <!-- Load Phaser engine -->
     <script src="lib/phaser/phaser.min.js"></script>
+    <script src="intelxdk.js"></script>
+    <!-- phantom library, needed for XDK api calls -->
+    <script src="cordova.js"></script>
+    <!-- phantom library, needed for Cordova api calls -->
+    <script src="xhr.js"></script>
+    <!-- phantom library, needed for XDK CORS -->
+    
     <!-- Load game source files -->
-    <script src="src/Game.js"></script>
+    <!--<script src="src/Game.js"></script>-->
+    <script src="src/classes/constants.js"></script>
+    <script src="src/classes/vector.js"></script>
+    <script src="src/classes/actor.js"></script>
+    <script src="src/classes/monk.js"></script>
+    <script src="src/classes/projection.js"></script>
+    <script src="src/classes/desire.js"></script>
+    
     <!-- Load game entrance -->
     <script src="src/app.js"></script>
 </head>
+
 <body>
     <!-- Main canvas for rendering game stage -->
     <div id="game"></div>
 </body>
+
 </html>

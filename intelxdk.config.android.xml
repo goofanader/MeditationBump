@@ -8,8 +8,9 @@
 <description>Use this template to start creating Phaser based mobile game web apps.</description>
 <content src="index.html"/>
 <access origin="*"/>
+<intelxdk:plugin intelxdk:name="Device" intelxdk:value="intel.xdk.device"/>
 <preference name="android-minSdkVersion" value="10"/>
 <preference name="android-targetSdkVersion" value="19"/>
 <preference name="android-installLocation" value="auto"/>
 <preference name="Orientation" value="portrait"/>
-<!--creationInfo:{"src":"https://edge-intel.s3.amazonaws.com/jsapp/production/release-2015-ww07/template-phaser-portrait-webapp/sample.zip","projectTypeName":"com.intel.xdk.projecttype.webapp"}--></widget>
+<!--creationInfo:{"src":"https://edge-intel.s3.amazonaws.com/jsapp/production/release-2015-ww07/template-phaser-portrait-webapp/sample.zip","projectTypeName":"com.intel.xdk.projecttype.jsapp"}--></widget>
